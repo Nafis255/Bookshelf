@@ -1,0 +1,229 @@
+
+
+.header-content{
+    margin-top: 9.2rem;
+    width: 100%;
+}
+
+.title, .filter-container{
+    display: flex;
+    justify-content: center;
+}
+
+.title h1{
+    font-weight: 700;
+    font-size: 2.4rem;
+    background: linear-gradient(90deg, #74B3FF, #C3DCFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+    text-align: center;
+}
+
+
+/* .filter-books{
+    margin-top: 3.2rem;
+    display: inline-flex;
+    justify-content: space-between;
+    padding: 0.5rem 0.8rem;
+    background: rgba(116, 179, 255, 0.36);
+    color: #FFFFFF;
+    border-radius: 36px;
+}
+
+.filter{
+    padding: 0.35rem 1rem;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.filter:hover {
+    background: rgba(175, 208, 255, 0.1);
+}
+
+.filter.active{
+    background: #afd0ff;
+    color: #020203;
+    box-shadow: 0 2px 8px rgba(175, 208, 255, 0.2);
+}
+
+.filter.active:hover {
+    background: #9bc7ff;
+} */
+
+/* Container utama */
+.filter-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 16px;
+}
+
+/* Desktop filter - tampil di layar besar */
+
+.filter-books {
+    margin-top: 2.4rem;
+    display: inline-flex;
+    justify-content: space-between;
+    padding: 0.5rem 0.8rem;
+    background: rgba(116, 179, 255, 0.36);
+    color: #FFFFFF;
+    border-radius: 36px;
+}
+
+.filter {
+    display: inline-flex;
+    padding: 0.35rem 1rem;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.filter:hover {
+    background: rgba(175, 208, 255, 0.1);
+}
+
+.filter.active {
+    background: #afd0ff;
+    color: #020203;
+    box-shadow: 0 2px 8px rgba(175, 208, 255, 0.2);
+}
+
+.filter.active:hover {
+    background: #9bc7ff;
+}
+
+/* Mobile dropdown*/
+.filter-mobile {
+    display: none;
+    position: relative;
+}
+
+/* Tombol dropdown */
+.filter-dropdown-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 2.4rem;
+    background: rgba(116, 179, 255, 0.36);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+    margin-top: 1.2rem;
+}
+
+.filter-dropdown-btn:hover {
+    background: rgba(116, 179, 255, 0.5);
+}
+
+.filter-dropdown-btn:focus {
+    box-shadow: 0 0 0 2px rgba(175, 208, 255, 0.3);
+}
+
+.filter-dropdown-text {
+    font-weight: 400;
+    color: #FFFFFF;
+    padding: 0.35rem 1rem;
+    border-radius: 24px;
+    /* background: rgba(175, 208, 255, 0.1); */
+}
+
+.filter-dropdown-arrow {
+    color: #FFFFFF;
+    transition: transform 0.3s ease;
+    font-size: 12px;
+    margin-left: 0.5rem;
+}
+
+.filter-dropdown-arrow.open {
+    transform: rotate(180deg);
+}
+
+/* Menu dropdown */
+.filter-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 0.5rem;
+    background: rgba(116, 179, 255, 0.36);
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(175, 208, 255, 0.2);
+    z-index: 10;
+    overflow: hidden;
+    backdrop-filter: blur(8px);
+    padding: 12px;
+}
+
+/* Item dalam dropdown */
+.filter-dropdown-item {
+    padding: 0.35rem 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0.2rem 0.5rem;
+    border-radius: 8px;
+    user-select: none;
+}
+
+.filter-dropdown-item:hover {
+    background: rgba(175, 208, 255, 0.1);
+}
+
+.filter-dropdown-item.active {
+    background: #afd0ff;
+    color: #020203;
+    box-shadow: 0 2px 8px rgba(175, 208, 255, 0.2);
+}
+
+.filter-dropdown-item.active:hover {
+    background: #9bc7ff;
+}
+
+/* Overlay untuk menutup dropdown saat klik di luar */
+.filter-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
+}
+
+.filter-dropdown-menu {
+    animation: slideDown 0.2s ease;
+}
+
+
+@media (max-width: 560px) {
+    .filter-desktop {
+        display: none;
+    }
+    
+    .filter-mobile {
+        display: block;
+    }
+}
+
+/* Animasi smooth untuk dropdown */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

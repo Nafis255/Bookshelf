@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.otp-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #fff;
+}
+
+.otp-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 40px;
+    width: 80%;
+    max-width: 640px;
+    min-width: 320px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    gap: 12px;
+}
+
+.otp-container h1 {
+    text-align: center;
+    font-weight: 600;
+    font-size: 28px;
+}
+
+.header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.header h1{
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.header p{
+    color: rgba(208, 208, 208, 0.6);
+}
+
+.input-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top:1.2rem;
+}
+
+.input-otp{
+    width: 80%;
+    min-width: 240px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 20px;
+    outline: none;
+    transition: all 0.3s ease;
+    padding-right: 40px;
+    gap: 16px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    letter-spacing: 12px;
+
+}
+
+.resend-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.resend-container p{
+    text-align: center;
+}
+
+a {
+    margin-left: 8px;
+    color: #afd0ff;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: #74B3FF;
+    text-decoration: underline;
+}
+
+.button-container{
+    display: flex;
+    justify-content: center;
+    margin-top:1.2rem;
+}
+
+.button-verif{
+    width: 80%;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+    text-align: center;
+    text-decoration: none;
+    background: linear-gradient(135deg, #74B3FF, #92bef5);
+    color: #020203;
+}
+
+.button-verif:hover{
+    background: linear-gradient(135deg, #92bef5, #afd0ff);
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0 2rem;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+}
+
+.nav-container{
+    top: 1.4rem;
+    position: fixed;
+    width: 90%;
+    max-width: 1200px;
+    background: rgba(61, 61, 61, 0.2);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    padding: 12px 20px;
+    z-index: 1000;
+}
+
+.logout-container{
+    display: inline-block;
+    padding: 0.4rem 1.2rem;
+    /* background: linear-gradient(90deg, #74B3FF, #92bef5, #afd0ff); */
+    background: linear-gradient(90deg, #5a9cff, #7ba8f5, #9bc7ff);
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #020203;
+}
+
+.logout{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px
+}
+
+.icon-logout{
+    transform: scaleX(-1);
+}
+
+.logout:hover {
+    background: linear-gradient(90deg, #74B3FF, #92bef5, #afd0ff);
+    box-shadow: 0 4px 12px rgba(116, 179, 255, 0.3);
+}
+
+
+/* Media queries untuk responsif */
+@media (max-width: 560px) {
+    .nav-container{
+        border-radius: 16px;
+        padding: 12px 16px;
+    }
+
+    .logout-container{
+        padding: 0.4rem 0.6rem;
+        /* background: linear-gradient(90deg, #74B3FF, #92bef5, #afd0ff); */
+        background: linear-gradient(90deg, #5a9cff, #7ba8f5, #9bc7ff);
+        border: none;
+        border-radius: 8px;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+    .logout p{
+        display: none;
+    }
+
+    
+}

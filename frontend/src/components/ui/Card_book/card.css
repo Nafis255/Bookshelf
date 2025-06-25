@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.card-wraper{
+    margin: 32px 0px 36px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 282px);
+    gap: 16px;
+    justify-content: center;
+}
+
+.card-container{
+    display: flex;
+    justify-content: center;
+}
+
+.card-content{
+    /* background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.08), rgba(116, 179, 255, 0.3)); */
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    border: 1.3px solid rgba(255, 255, 255, 0.12);
+    padding: 20px 20px 24px;
+}
+
+.card-content:hover{
+    background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.08), rgba(116, 179, 255, 0.25));
+    border: 1px solid #afd0ff5a;
+    transform: translateY(-3px);
+}
+
+.cover-book{
+    width:240px;
+    height: 280px;
+    border-radius: 8px;
+}
+
+.modify-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.status-select-card {
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid #555;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.edit-delete{
+    display: flex;
+    gap: 16px;
+}
+
+.icon{
+    font-size: 24px;
+}
+
+.icon:hover{
+    color: #7ba8f5;
+}
+
+.status{
+    margin:8px 0 6px;
+}
+
+.judul{
+    font-weight: 600;
+    height: 24px;
+    overflow: hidden;
+}
+
+.author{
+    font-size: 14px;
+     height: 20px;
+    overflow: hidden;
+}
