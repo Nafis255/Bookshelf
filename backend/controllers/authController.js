@@ -12,6 +12,15 @@ const authController = {
         return res.status(400).json({ success: false, message: 'Email dan password wajib diisi' });
       }
 
+      // Validasi kata sandi kuat
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+      if (!passwordRegex.test(password)) {
+        return res.status(400).json({
+          success: false,
+          message: 'Kata sandi harus minimal 8 karakter, mengandung huruf kapital, huruf kecil, angka, dan simbol (!@#$%^&*)',
+        });
+      }
+
       // Cek apakah email sudah terdaftar
       const existingUser = await User.findByEmail(email);
       if (existingUser) {
