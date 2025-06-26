@@ -1,41 +1,45 @@
-const db = require('../database');
+const db = require("../database");
 
 class ReadingProgress {
-  static async getByBookId(bookId) {
+  static async getByBookIdAndUserId(bookId, userId) {
     const [rows] = await db.execute(
-      'SELECT * FROM reading_progress WHERE book_id = ?',
-      [bookId]
+      "SELECT * FROM reading_progress WHERE book_id = ? AND user_id = ?",
+      [bookId, userId]
     );
     return rows[0];
   }
 
   static async create(progressData) {
-    const { book_id, status } = progressData;
+    const { book_id, user_id, status } = progressData;
     const [result] = await db.execute(
-      'INSERT INTO reading_progress (book_id, status) VALUES (?, ?)',
-      [book_id, status || 'not_started']
+      "INSERT INTO reading_progress (book_id, user_id, status) VALUES (?, ?, ?)",
+      [book_id, user_id, status || "not_started"]
     );
     return result.insertId;
   }
 
-  static async update(bookId, progressData) {
+  static async update(bookId, userId, progressData) {
     const { status } = progressData;
     const [result] = await db.execute(
-      'UPDATE reading_progress SET status = ? WHERE book_id = ?',
-      [status, bookId]
+      "UPDATE reading_progress SET status = ? WHERE book_id = ? AND user_id = ?",
+      [status, bookId, userId]
     );
     return result.affectedRows;
   }
 
-  static async getBooksWithProgress() {
-    const [rows] = await db.execute(`
+  static async getBooksWithProgressForUser(userId) {
+    const [rows] = await db.execute(
+      `
       SELECT 
         b.*,
         rp.status
       FROM books b
-      LEFT JOIN reading_progress rp ON b.id = rp.book_id
+      INNER JOIN reading_progress rp ON b.id = rp.book_id
+      WHERE rp.user_id = ? -- <-- FILTER BERDASARKAN USER ID
       ORDER BY b.created_at DESC
-    `);
+    `,
+      [userId]
+    );
     return rows;
   }
 
@@ -53,7 +57,8 @@ class ReadingProgress {
   }
 
   static async getRecentlyCompleted(limit = 5) {
-    const [rows] = await db.execute(`
+    const [rows] = await db.execute(
+      `
       SELECT 
         b.title,
         b.author,
@@ -63,7 +68,9 @@ class ReadingProgress {
       WHERE rp.status = 'completed'
       ORDER BY rp.updated_at DESC
       LIMIT ?
-    `, [limit]);
+    `,
+      [limit]
+    );
     return rows;
   }
 

@@ -38,8 +38,9 @@ const Register = () => {
             });
 
             if (response.data.success) {
-                alert('Registrasi berhasil! Silakan masuk.');
-                navigate('/');
+                alert(response.data.message); // Tampilkan pesan sukses dari backend
+                // Arahkan ke halaman OTP dengan membawa email
+                navigate('/kode-otp', { state: { email: email } }); 
             }
         } catch (err) {
             const errorMessage = err.response?.data?.message || 'Registrasi gagal, silakan coba lagi.';

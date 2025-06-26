@@ -2,20 +2,15 @@ const Book = require('../models/Book');
 const ReadingProgress = require('../models/ReadingProgress');
 
 const progressController = {
-  // Get all books with their reading progress
+
   async getBooksWithProgress(req, res) {
     try {
-      const books = await ReadingProgress.getBooksWithProgress();
-      res.json({
-        success: true,
-        data: books
-      });
+      const userId = req.user.id; // Ambil ID pengguna yang sedang login
+      const books = await ReadingProgress.getBooksWithProgressForUser(userId); // Panggil fungsi baru
+      res.json({ success: true, data: books });
     } catch (error) {
-      res.status(500).json({
-        success: false,
-        message: 'Error fetching books with progress',
-        error: error.message
-      });
+      console.error("ERROR DI GET BOOKS WITH PROGRESS:", error);
+      res.status(500).json({ success: false, message: 'Error fetching books' });
     }
   },
 
@@ -48,46 +43,24 @@ const progressController = {
   // Update reading progress (hanya status)
   async updateProgress(req, res) {
     try {
-      const { bookId } = req.params;
-      const { status } = req.body;
+        const { bookId } = req.params;
+        const { status } = req.body;
+        const userId = req.user.id; // Ambil ID pengguna
 
-      // Check if book exists
-      const book = await Book.getById(bookId);
-      if (!book) {
-        return res.status(404).json({
-          success: false,
-          message: 'Book not found'
-        });
-      }
+        // Pengecekan keamanan: pastikan buku ini milik pengguna yang login
+        const progress = await ReadingProgress.getByBookIdAndUserId(bookId, userId);
+        if (!progress) {
+            return res.status(403).json({ success: false, message: 'Akses ditolak: Anda tidak memiliki buku ini' });
+        }
 
-      // Validate status
-      const validStatuses = ['not_started', 'reading', 'completed'];
-      if (!validStatuses.includes(status)) {
-        return res.status(400).json({
-          success: false,
-          message: 'Invalid status. Must be: not_started, reading, or completed'
-        });
-      }
-
-      const affectedRows = await ReadingProgress.update(bookId, { status });
-
-      if (affectedRows === 0) {
-        return res.status(404).json({
-          success: false,
-          message: 'Reading progress not found'
-        });
-      }
-
-      res.json({
-        success: true,
-        message: 'Reading progress updated successfully'
-      });
+        const affectedRows = await ReadingProgress.update(bookId, userId, { status });
+        if (affectedRows === 0) {
+            return res.status(404).json({ success: false, message: 'Gagal memperbarui progres' });
+        }
+        res.json({ success: true, message: 'Progres berhasil diperbarui' });
     } catch (error) {
-      res.status(500).json({
-        success: false,
-        message: 'Error updating reading progress',
-        error: error.message
-      });
+        console.error("ERROR DI UPDATE PROGRESS:", error);
+        res.status(500).json({ success: false, message: 'Error updating progress' });
     }
   },
 
