@@ -21,6 +21,7 @@ const Login = () => {
 
         // validasi password strength
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+        
         if (!passwordRegex.test(password)) {
             setError('Kata sandi harus minimal 8 karakter, mengandung huruf kapital, huruf kecil, angka, dan simbol (!@#$%^&*)');
             setLoading(false);
