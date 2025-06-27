@@ -7,7 +7,7 @@ import Card_book from '../../ui/Card_book/Card_book';
 import Edit_book from '../../ui/Edit_book/Edit_book';
 
 // Ganti dengan URL backend Anda. Pastikan backend sudah berjalan.
-const API_URL = 'http://localhost:3001/api'; 
+const API_URL = 'http://localhost:3000/api'; 
 
 const Books = () => {
     const [allItems, setAllItems] = useState([]); 
