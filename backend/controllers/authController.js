@@ -31,12 +31,8 @@ const authController = {
             const hashedPassword = await bcrypt.hash(password, 10);
             const otp = generateOtp();
             const otp_expires_at = new Date(Date.now() + 10 * 60 * 1000); // 10 menit dari sekarang
-
-            if (existingUser) {
-                await User.updateOtp(email, otp, otp_expires_at);
-            } else {
-                await User.create({ email, password: hashedPassword, otp, otp_expires_at });
-            }
+            
+            await User.create({ email, password: hashedPassword, otp, otp_expires_at });
 
             await sendVerificationEmail(email, otp);
 
