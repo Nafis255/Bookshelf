@@ -4,7 +4,7 @@ import axios from 'axios';
 import './login.css';
 
 // Ganti dengan URL backend Anda
-const API_URL = 'http://157.10.252.179:3000/api';
+const API_URL = import.meta.env.VITE_API_BASE_URL;
 
 const Login = () => {
     const navigate = useNavigate();
