@@ -13,21 +13,21 @@ const authController = {
                 return res.status(400).json({ success: false, message: 'Email dan password wajib diisi' });
             }
 
-      // Validasi kata sandi yg aman
-      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
-
-      if (!passwordRegex.test(password)) {
-        return res.status(400).json({
-          success: false,
-          message: 'Kata sandi harus minimal 8 karakter, mengandung huruf kapital, huruf kecil, angka, dan simbol (!@#$%^&*)',
-        });
-      }
-
-      // Cek apakah email sudah terdaftar
-      const existingUser = await User.findByEmail(email);
-      if (existingUser) {
-        return res.status(400).json({ success: false, message: 'Email sudah terdaftar' });
-      }
+            // Validasi kata sandi yg aman
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+        
+            if (!passwordRegex.test(password)) {
+                return res.status(400).json({
+                    success: false,
+                    message: 'Kata sandi harus minimal 8 karakter, mengandung huruf kapital, huruf kecil, angka, dan simbol (!@#$%^&*)',
+                });
+            }
+        
+            // Cek apakah email sudah terdaftar
+            const existingUser = await User.findByEmail(email);
+            if (existingUser) {
+                return res.status(400).json({ success: false, message: 'Email sudah terdaftar' });
+            }
             const hashedPassword = await bcrypt.hash(password, 10);
             const otp = generateOtp();
             const otp_expires_at = new Date(Date.now() + 10 * 60 * 1000); // 10 menit dari sekarang
