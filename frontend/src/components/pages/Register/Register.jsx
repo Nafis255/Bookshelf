@@ -43,8 +43,20 @@ const Register = () => {
                 navigate('/kode-otp', { state: { email: email } }); 
             }
         } catch (err) {
-            const errorMessage = err.response?.data?.message || 'Registrasi gagal, silakan coba lagi.';
-            setError(errorMessage);
+            console.error('Registration error:', err); // Log untuk debugging
+            
+            // Handle different error types
+            if (err.response) {
+                // Server responded with error status
+                const errorMessage = err.response.data?.message || 'Registrasi gagal, silakan coba lagi.';
+                setError(errorMessage);
+            } else if (err.request) {
+                // Network error
+                setError('Koneksi bermasalah, silakan periksa internet Anda.');
+            } else {
+                // Other error
+                setError('Terjadi kesalahan, silakan coba lagi.');
+            }
         } finally {
             setLoading(false);
         }
