@@ -7,7 +7,7 @@ import Card_book from '../../ui/Card_book/Card_book';
 import Edit_book from '../../ui/Edit_book/Edit_book';
 
 // Ganti dengan URL backend Anda. Pastikan backend sudah berjalan.
-const API_URL = 'http://157.10.252.179:3000/api'; 
+const API_URL = import.meta.env.VITE_API_BASE_URL; 
 
 const Books = () => {
     const [allItems, setAllItems] = useState([]); 
