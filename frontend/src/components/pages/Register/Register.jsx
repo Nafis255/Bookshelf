@@ -13,12 +13,21 @@ const Register = () => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+
     const handleRegister = async (e) => {
         e.preventDefault();
+        
+        if (!passwordRegex.test(password)) {
+            setError('Kata sandi harus minimal 8 karakter, mengandung huruf kapital, huruf kecil, angka, dan simbol (!@#$%^&*)');
+            return;
+        }
+
         if (password !== confirmPassword) {
             setError('Kata sandi dan konfirmasi kata sandi tidak sama!');
             return;
         }
+
         setLoading(true);
         setError('');
 
@@ -34,7 +43,6 @@ const Register = () => {
                 navigate('/kode-otp', { state: { email: email } }); 
             }
         } catch (err) {
-            // Tampilkan pesan error dari backend
             const errorMessage = err.response?.data?.message || 'Registrasi gagal, silakan coba lagi.';
             setError(errorMessage);
         } finally {
